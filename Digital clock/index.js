@@ -1,16 +1,3 @@
-// set audio for alaram-------------------------- 
-
-const alaramList = []; // make an array for store all the alaram being set
-
-const audio = new Audio('audio/Desires.mp3')
-
-function ringing(now) {
-    audio.play();
-    console.log(`Hey it is ${now}`);
-}
-
-
-
 // creating logic for clock--------------------
 let clocknav = document.getElementById('clock');
 let alaramnav = document.getElementById('alaram');
@@ -30,15 +17,46 @@ alaramnav.addEventListener('click', () => {
 
 
 
+// set audio for alaram-------------------------- 
+
+const alaramList = []; // make an array for store all the alaram being set
+
+const audio = new Audio('audio/Desires.mp3')
+audio.loop = true;
+
+let alarmTime = null;
+let alarmTimeout = null;
+
+
+// function for ring alaram
+function ringing(now) {
+    audio.play();
+    alert(`Hey it is ${now}`);
+} 
+
+// function to clear/stop the currently playing alarm
+function clearAlarm() {
+    audio.pause();
+    if (alarmTimeout) {
+        clearTimeout(alarmTimeout);
+        alert('Alarm cleared');
+    }
+}
+
+let newalaramlist = document.getElementById('mylist');
+
+
+
+
 // for display time on web page---------------------
 function displayTime() {
-    let date = new Date();
-    let gethours = formatTime(date.getHours());
-    let getmin = formatTime(date.getMinutes());
-    let getsecond = formatTime(date.getSeconds());
-    let sessions = document.getElementById('sessions');
+let date = new Date();
+let gethours = formatTime(date.getHours());
+let getmin = formatTime(date.getMinutes());
+let getsecond = formatTime(date.getSeconds());
+let sessions = document.getElementById('sessions');
 
-    const now = `${gethours}:${getmin}:${getsecond}`
+const now = `${gethours}:${getmin}:${getsecond}`
 
     if (alaramList.includes(now)) {
         ringing(now);
@@ -67,9 +85,27 @@ function formatTime(time) {
 }
 
 
-// Adds newAlarm to the unordered list as a new list item on webpage
-let newalaramlist = document.getElementById('mylist');
 
+// removes an alarm from the unordered list and the webpage when "Delete Alarm" is clicked
+newalaramlist.addEventListener('click', e=> {
+    console.log("removing element")
+    if(e.target.classList.contains("deleteAlarm")){
+        e.target.parentElement.remove();
+    }    
+})
+
+// removes an alarm from the array when "Delete Alarm" is clicked
+remove = (value) => {
+    let newList = alaramList.filter((time) => time != value);
+    alaramList.length = 0;                  // Clear contents
+    alaramList.push.apply(alaramList, newList);
+    
+    console.log("newList", newList);
+    console.log("alarmList", alaramList);
+}
+
+
+// Adds newAlarm to the unordered list as a new list item on webpage
 function displaynewalaram(alaramtime){
     let html = `<li class = "time-list flex flex-row justify-center bg-gray-900 items-center h-[4rem] w-[400px] my-3 rounded-2xl">        
     <span class="time w-[160px] text-xl text-white">${alaramtime}</span>
@@ -82,7 +118,8 @@ function displaynewalaram(alaramtime){
 let setalarambtn = document.getElementById('setalaram'); 
 
 // creating an alaram logic------------------
-setalarambtn.addEventListener('click', () => {
+setalarambtn.addEventListener('submit',  e=> {
+    e.preventDefault();
 let alaramhour = formatTime(document.getElementById('alaram-hour').value);
 let alarammin = formatTime(document.getElementById('alaram-minutes').value);
 let alaramsec = formatTime(document.getElementById('alaram-second').value);
@@ -90,15 +127,34 @@ let alaramsec = formatTime(document.getElementById('alaram-second').value);
 
 const alaramtime = `${alaramhour}:${alarammin}:${alaramsec}`
 
-    console.log(`confirm your time: ${ displaynewalaram(alaramtime) }`);
-    displaynewalaram(alaramtime);
+// if(now==alaramtime){
+//     ringing(now)
+//     alert(`hey it is ${alaramtime}`)
+// }
+
+    //     add newAlarm to alarmList
+    if(isNaN(alaramtime)){
+        if(!alaramList.includes(alaramtime)){
+            alaramList.push(alaramtime);
+            console.log(alaramList);
+            console.log(alaramList.length);
+            displaynewalaram(alaramtime);
+            setalarambtn.reset();
+        } else{
+            alert(`Alarm for ${alaramtime} already set.`);
+        }
+    } else{
+        alert("Invalid Time Entered")
+    } 
 })
+
+
 
 //----creating a logic for audio whenever Stop Alaram btn triggered
-let stopalarambtn = document.getElementById('stopalaram'); 
+// let stopalarambtn = document.getElementById('stopalaram'); 
 
-stopalarambtn.addEventListener('click', () => {
-    // alaramhour.value = "";
-    audio.pause();
-})
+// stopalarambtn.addEventListener('click', () => {
+//     // alaramhour.value = "";
+//     audio.pause();
+// })
 

@@ -1,4 +1,5 @@
 function validateform(){
+    e.preventDefault();
 
     let textboxname = document.getElementById('inputname');
     let textboxemail = document.getElementById('inputemail');

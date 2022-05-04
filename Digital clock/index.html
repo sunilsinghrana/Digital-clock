@@ -32,7 +32,7 @@
 
         <!-- Creating a digital clock  -->
         <div id="clocksection"
-            class="clock bg-gray-200 w-[65%] h-64 m-auto text-center flex flex-row justify-center items-center rounded-xl absolute left-[18%] top-[200px] shadow-xl hidden">
+            class="clock bg-gray-200 w-[65%] h-64 m-auto text-center flex flex-row justify-center items-center rounded-xl absolute left-[18%] top-[200px] shadow-xl">
             <span id="hours" class="text-9xl p-4 w-[200px] h-[180px]"></span>
             <span id="ratios" class="text-9xl p-4">:</span>
             <span id="minutes" class="text-9xl p-4 w-[200px] h-[180px]"></span>
@@ -44,9 +44,11 @@
 
 
         <!-- creating an Alaram with ringtone -->
-        <div id="alaramsection"
-            class="alaram bg-zinc-400 w-[60%] h-auto p-5 m-auto mt-10 text-center flex flex-col justify-evenly items-center absolute left-[20%] top-[150px] rounded-xl shadow-2xl">
+        <form action="" id="setalaram">
 
+            <div id="alaramsection"
+            class="alaram bg-zinc-400 w-[60%] h-auto p-5 m-auto mt-10 text-center flex flex-col justify-evenly items-center absolute left-[20%] top-[150px] rounded-xl shadow-2xl hidden">
+            
             <div class="heading my-12">
                 <h1 class="text-5xl font-bold font-serif mb-4">Set an Alaram</h1>
             </div>
@@ -62,18 +64,19 @@
                 </div>
                 <div class="alaram-second">
                     <input type="number" name="" id="alaram-second" class=" w-24 h-12 pl-3 text-xl"
-                        placeholder="second" max="59" min="00">
+                    placeholder="second" max="59" min="00">
                 </div>
-
+                
             </div>
-
+            
             <div class="controls my-12">
                 <!-- <input type="submit" value="" class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white" placeholder="Set Alaram"> -->
-                <button class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl" id="setalaram">Set Alaram</button>
-                <button class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl" id="stopalaram">Stop Alaram</button>
+                <button type="submit" class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl" id="setalarambtn">Set Alaram</button>
+                <button type="reset" onclick="clearAlarm()" class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl" id="stopalarambtn">Stop Alaram</button>
                 <!-- <input type="reset" value="" class="">Stop Alaram -->
             </div>
-
+            
+        </form>
             <hr class="w-[60%] my-7 h-3 ml-[20%]">
 
             <section>
