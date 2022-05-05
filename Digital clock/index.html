@@ -32,7 +32,7 @@
 
         <!-- Creating a digital clock  -->
         <div id="clocksection"
-            class="clock bg-gray-200 w-[65%] h-64 m-auto text-center flex flex-row justify-center items-center rounded-xl absolute left-[18%] top-[200px] shadow-xl">
+            class="clock bg-gray-200 w-[65%] h-64 m-auto text-center flex flex-row justify-center items-center rounded-xl absolute left-[18%] top-[200px] shadow-xl hidden">
             <span id="hours" class="text-9xl p-4 w-[200px] h-[180px]"></span>
             <span id="ratios" class="text-9xl p-4">:</span>
             <span id="minutes" class="text-9xl p-4 w-[200px] h-[180px]"></span>
@@ -47,60 +47,77 @@
         <form action="" id="setalaram">
 
             <div id="alaramsection"
-            class="alaram bg-zinc-400 w-[60%] h-auto p-5 m-auto mt-10 text-center flex flex-col justify-evenly items-center absolute left-[20%] top-[150px] rounded-xl shadow-2xl hidden">
-            
-            <div class="heading my-12">
-                <h1 class="text-5xl font-bold font-serif mb-4">Set an Alaram</h1>
-            </div>
+                class="alaram bg-zinc-400 w-[60%] h-auto p-5 m-auto mt-10 text-center flex flex-col justify-evenly items-center absolute left-[20%] top-[150px] rounded-xl shadow-2xl hidden">
 
-            <div class="alaram-session flex flex-row justify-around my-12">
+                <div class="heading my-12">
+                    <h1 class="text-5xl font-bold font-serif mb-4">Set an Alaram</h1>
+                </div>
 
-                <div class="alaram-hour">
-                    <input type="number" name="" id="alaram-hour" class=" w-24 h-12 pl-3 text-xl" placeholder="Hour" max="59" min="00">
-                </div>
-                <div class="alaram-minutes">
-                    <input type="number" name="" id="alaram-minutes" class=" w-24 h-12 pl-3 text-xl"
-                        placeholder="Minute" max="59" min="00">
-                </div>
-                <div class="alaram-second">
-                    <input type="number" name="" id="alaram-second" class=" w-24 h-12 pl-3 text-xl"
-                    placeholder="second" max="59" min="00">
+                <div class="alaram-session flex flex-row justify-around my-12">
+
+                    <div class="alaram-hour">
+                        <input type="number" name="" id="alaram-hour" class=" w-24 h-12 pl-3 text-xl" placeholder="Hour"
+                            max="59" min="00">
+                    </div>
+                    <div class="alaram-minutes">
+                        <input type="number" name="" id="alaram-minutes" class=" w-24 h-12 pl-3 text-xl"
+                            placeholder="Minute" max="59" min="00">
+                    </div>
+                    <div class="alaram-second">
+                        <input type="number" name="" id="alaram-second" class=" w-24 h-12 pl-3 text-xl"
+                            placeholder="second" max="59" min="00">
+                    </div>
+
                 </div>
                 
-            </div>
-            
-            <div class="controls my-12">
+                <div class="controls my-12">
                 <!-- <input type="submit" value="" class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white" placeholder="Set Alaram"> -->
-                <button type="submit" class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl" id="setalarambtn">Set Alaram</button>
-                <button type="reset" onclick="clearAlarm()" class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl" id="stopalarambtn">Stop Alaram</button>
+                <button type="submit"
+                    class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl"
+                    id="setalarambtn">Set Alaram</button>
+                <button type="reset" onclick="clearAlarm()"
+                    class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl"
+                    id="stopalarambtn">Stop Alaram</button>
                 <!-- <input type="reset" value="" class="">Stop Alaram -->
             </div>
             
         </form>
-            <hr class="w-[60%] my-7 h-3 ml-[20%]">
+        <hr class="w-[60%] my-7 h-3 ml-[20%]">
 
-            <section>
-                <div>
-                    <h3 class="alaram-heading text-3xl font-serif mb-8">Upcoming Alaram</h3>
-                </div>
-                <div>
-                    <ul id="mylist" class=" flex flex-col justify-around items-center">
+        <section>
+            <div>
+                <h3 class="alaram-heading text-3xl font-serif mb-8">Upcoming Alaram</h3>
+            </div>
+            <div>
+                <ul id="mylist" class=" flex flex-col justify-around items-center">
+                    
+                </ul>
+            </div>
+        </section>
+    </div>
 
-                        <!-- <li class = "time-list flex flex-row justify-center bg-gray-900 items-center h-[4rem] w-[400px] rounded-2xl">        
-                            <span class="time w-[160px] text-xl text-white">12:00:00</span>
-                            <button class="deleteAlarm time-control bg-gray-600 hover:bg-gray-800 px-[35px] py-[8px] text-white mx-12 rounded-xl" id="delete-button">Delete</button>       
-                        </li>` -->
 
-                    </ul>
-                </div>
-            </section>
+
+        <!-- creating an Stopwatch using HTML, tailwind, javascript -->
+        <div class="stopwatch-section bg-zinc-400 w-[60%] h-auto p-5 m-auto mt-10 text-center absolute left-[20%] top-[150px] rounded-xl shadow-2xl"
+            id="stopwatch-section">
+            <div class="timer-set text-6xl w-full h-[180px]" id="timerdisplay">00:00:00:000</div>
+            <div class="timer-button">
+                <button class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl"
+                    id="pausetimer">Pause</button>
+                <button class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl"
+                    id="starttimer">Start</button>
+                <button class="bg-gray-600 hover:bg-gray-800 px-[45px] py-[10px] text-white mx-12 rounded-xl"
+                    id="resettimer">Reset</button>
+            </div>
 
         </div>
 
-
     </div>
 
-    <script src="index.js"></script>
+    <script src="javascript/index.js"></script>
+    <script src="javascript/alarm.js"></script>
+    <script src="javascript/stopwatch.js"></script>
 </body>
 
 </html>
